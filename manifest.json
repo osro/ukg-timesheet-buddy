@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "UKG Timesheet Buddy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fills every weekday on a UKG Pro Workforce Management timesheet with a fixed 7.5h + 30min lunch schedule. Never submits — only fills empty rows.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": [

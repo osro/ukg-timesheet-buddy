@@ -5,7 +5,9 @@
   <title>UKG Timesheet Buddy</title>
   <style>
     body { font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif; width: 340px; padding: 12px; margin: 0; }
-    h1 { font-size: 14px; margin: 0 0 8px; color: #005151; }
+    .header { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+    .header img { width: 28px; height: 28px; display: block; }
+    h1 { font-size: 14px; margin: 0; color: #005151; }
     p.help { font-size: 12px; color: #555; margin: 0 0 12px; line-height: 1.4; }
     .row { margin-bottom: 12px; }
     .times { display: flex; gap: 12px; }
@@ -26,7 +28,10 @@
   </style>
 </head>
 <body>
-  <h1>UKG Timesheet Buddy</h1>
+  <div class="header">
+    <img src="icons/icon48.png" alt="UKG Timesheet Buddy">
+    <h1>UKG Timesheet Buddy</h1>
+  </div>
   <p class="help">
     Fills every <strong>weekday</strong> on the visible timesheet with the same schedule:
     7.5&nbsp;h work + 30&nbsp;min lunch. <strong>Only fills</strong> — never Saves or Submits.
