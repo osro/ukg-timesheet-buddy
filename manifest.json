@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "UKG Timesheet CSV Filler",
-  "version": "1.0.0",
-  "description": "Fills a UKG Pro Workforce Management timesheet from a CSV. Never submits — only fills empty rows.",
+  "name": "UKG Timesheet Buddy",
+  "version": "1.0.1",
+  "description": "Fills every weekday on a UKG Pro Workforce Management timesheet with a fixed 7.5h + 30min lunch schedule. Never submits — only fills empty rows.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": [
     "https://*.ultipro.com/*"
   ],
   "action": {
-    "default_title": "Fill UKG timesheet from CSV",
+    "default_title": "Fill UKG timesheet weekdays",
     "default_popup": "popup.html"
   },
   "icons": {

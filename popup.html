@@ -2,49 +2,63 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>UKG CSV Filler</title>
+  <title>UKG Timesheet Buddy</title>
   <style>
-    body { font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif; width: 360px; padding: 12px; margin: 0; }
+    body { font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif; width: 340px; padding: 12px; margin: 0; }
     h1 { font-size: 14px; margin: 0 0 8px; color: #005151; }
-    p.help { font-size: 12px; color: #555; margin: 0 0 10px; }
-    .row { margin-bottom: 10px; }
+    p.help { font-size: 12px; color: #555; margin: 0 0 12px; line-height: 1.4; }
+    .row { margin-bottom: 12px; }
+    .times { display: flex; gap: 12px; }
+    .times .field { flex: 1; }
+    label { font-size: 12px; display: block; margin-bottom: 4px; color: #333; }
+    input[type=time] { font-size: 14px; padding: 5px 6px; border: 1px solid #ccc; border-radius: 3px; width: 100%; box-sizing: border-box; }
     button { background: #005151; color: white; border: 0; padding: 8px 14px; border-radius: 3px; cursor: pointer; font-size: 13px; }
     button:disabled { background: #999; cursor: not-allowed; }
     button.secondary { background: #eee; color: #333; }
-    input[type=file] { font-size: 12px; }
-    #log { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; background: #f6f6f6; border: 1px solid #ddd; padding: 6px; border-radius: 3px; max-height: 220px; overflow-y: auto; white-space: pre-wrap; }
+    #preview { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; background: #f0f7f6; border: 1px solid #cfe3e0; padding: 8px; border-radius: 3px; white-space: pre; color: #114; }
+    #preview.bad { background: #fdecee; border-color: #f3c2c8; color: #8a1320; }
+    #log { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11px; background: #f6f6f6; border: 1px solid #ddd; padding: 6px; border-radius: 3px; max-height: 200px; overflow-y: auto; white-space: pre-wrap; }
     .ok { color: #1B7F66; }
     .warn { color: #D17600; }
     .err { color: #DC0C22; }
     .muted { color: #888; }
-    label { font-size: 12px; display: block; margin-bottom: 4px; }
     .footer { font-size: 11px; color: #888; margin-top: 8px; }
   </style>
 </head>
 <body>
-  <h1>UKG Timesheet CSV Filler</h1>
+  <h1>UKG Timesheet Buddy</h1>
   <p class="help">
-    Loads a CSV with columns <code>date,time_code,start,end</code> and fills the open
-    UKG timesheet. <strong>Only fills</strong> — never clicks Save or Submit. Skips any day
-    that already has entries.
+    Fills every <strong>weekday</strong> on the visible timesheet with the same schedule:
+    7.5&nbsp;h work + 30&nbsp;min lunch. <strong>Only fills</strong> — never Saves or Submits.
+    Days that already have entries are skipped.
   </p>
 
-  <div class="row">
-    <label for="csv">CSV file</label>
-    <input id="csv" type="file" accept=".csv,text/csv">
+  <div class="row times">
+    <div class="field">
+      <label for="start">Start time</label>
+      <input id="start" type="time" value="08:30">
+    </div>
+    <div class="field">
+      <label for="lunch">Lunch start</label>
+      <input id="lunch" type="time" value="11:30">
+    </div>
   </div>
 
   <div class="row">
-    <button id="fill" disabled>Fill timesheet</button>
+    <div id="preview"></div>
+  </div>
+
+  <div class="row">
+    <button id="fill">Fill weekdays</button>
     <button id="clearLog" class="secondary">Clear log</button>
   </div>
 
   <div class="row">
-    <div id="log" class="muted">No CSV loaded.</div>
+    <div id="log" class="muted">Open the timesheet, then click Fill.</div>
   </div>
 
   <div class="footer">
-    Open the timesheet page first, then click Fill. Re-run for each pay period.
+    Be in <strong>Day Details</strong> view on the pay period you want to fill, then review and Save manually.
   </div>
 
   <script src="popup.js"></script>
